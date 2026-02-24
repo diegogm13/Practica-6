@@ -1,0 +1,64 @@
+<!-- NAVBAR -->
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <i class="pi pi-prime" style="font-size:1.8rem; color:var(--p-primary-color);"></i>
+    <span class="font-bold text-xl ml-2">MiApp</span>
+  </div>
+  <div class="p-toolbar-group-end">
+    <p-button label="Iniciar Sesión" [routerLink]="['/login']" severity="secondary" [outlined]="true" class="mr-2"></p-button>
+    <p-button label="Registrarse" [routerLink]="['/register']" severity="primary"></p-button>
+  </div>
+</p-toolbar>
+
+<!-- HERO SECTION -->
+<div class="flex flex-column align-items-center text-center p-8">
+  <p-tag value="Nueva versión disponible" icon="pi pi-sparkles" severity="info" class="mb-4"></p-tag>
+
+  <h1 class="text-6xl font-bold mb-3">
+    La plataforma que
+    <span class="text-primary">transforma</span>
+    tu negocio
+  </h1>
+
+  <p class="text-xl text-color-secondary mb-5 line-height-3" style="max-width: 550px;">
+    Gestiona, analiza y escala tu proyecto con herramientas potentes e intuitivas. Todo lo que necesitas en un solo lugar.
+  </p>
+
+  <div class="flex gap-3">
+    <p-button label="Comenzar gratis" [routerLink]="['/register']" severity="primary" size="large" icon="pi pi-arrow-right" iconPos="right"></p-button>
+    <p-button label="Ver demo" severity="secondary" size="large" [outlined]="true" icon="pi pi-play"></p-button>
+  </div>
+</div>
+
+<p-divider></p-divider>
+
+<!-- FEATURES SECTION -->
+<div class="flex flex-column align-items-center p-6">
+  <h2 class="text-4xl font-bold mb-2">¿Por qué elegirnos?</h2>
+  <p class="text-color-secondary text-lg mb-6">
+    Características diseñadas para impulsar tu productividad al máximo nivel.
+  </p>
+
+  <div class="grid" style="max-width: 1100px; width: 100%;">
+    <div class="col-12 md:col-6 lg:col-4 p-3" *ngFor="let feature of features">
+      <p-card>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-3 px-4 pt-4">
+            <p-tag [icon]="feature.icon" severity="info" [rounded]="true" [value]="''"></p-tag>
+            <span class="text-xl font-semibold">{{ feature.title }}</span>
+          </div>
+        </ng-template>
+        <p class="text-color-secondary line-height-3 m-0">
+          {{ feature.description }}
+        </p>
+      </p-card>
+    </div>
+  </div>
+</div>
+
+<p-divider></p-divider>
+
+<!-- FOOTER -->
+<div class="flex justify-content-center p-4">
+  <span class="text-color-secondary text-sm">&copy; 2026 MiApp. Todos los derechos reservados.</span>
+</div>

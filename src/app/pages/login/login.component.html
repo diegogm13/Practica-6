@@ -1,0 +1,70 @@
+<div class="flex align-items-center justify-content-center" style="min-height: 100vh;">
+  <div style="width: 100%; max-width: 420px;">
+
+    <!-- LOGO -->
+    <div class="flex justify-content-center mb-4" [routerLink]="['/']" style="cursor: pointer;">
+      <i class="pi pi-prime text-primary" style="font-size: 2.5rem;"></i>
+      <span class="font-bold text-2xl ml-2">MiApp</span>
+    </div>
+
+    <!-- CARD LOGIN -->
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="text-center px-4 pt-4">
+          <h2 class="text-3xl font-bold m-0 mb-2">Bienvenido de vuelta</h2>
+          <p class="text-color-secondary m-0">Ingresa tus credenciales para continuar</p>
+        </div>
+      </ng-template>
+
+      <p-fluid>
+        <!-- ERROR -->
+        <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage" class="mb-4"></p-message>
+
+        <!-- EMAIL -->
+        <div class="flex flex-column gap-2 mb-4">
+          <label for="email" class="font-semibold text-sm">
+            <i class="pi pi-envelope mr-2"></i>Correo electrónico
+          </label>
+          <p-iconfield>
+            <p-inputicon styleClass="pi pi-envelope"></p-inputicon>
+            <input pInputText id="email" type="email" [(ngModel)]="email" placeholder="tu@email.com" />
+          </p-iconfield>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="flex flex-column gap-2 mb-4">
+          <label for="password" class="font-semibold text-sm">
+            <i class="pi pi-lock mr-2"></i>Contraseña
+          </label>
+          <p-password id="password" [(ngModel)]="password" placeholder="Tu contraseña" [toggleMask]="true" [feedback]="false"></p-password>
+        </div>
+
+        <!-- REMEMBER ME -->
+        <div class="flex align-items-center justify-content-between mb-4">
+          <p-checkbox [(ngModel)]="rememberMe" [binary]="true" label="Recordarme" inputId="remember"></p-checkbox>
+          <a [routerLink]="['/login']" class="text-primary no-underline text-sm font-semibold">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <!-- LOGIN BUTTON -->
+        <p-button label="Iniciar Sesión" (onClick)="onLogin()" [loading]="loading" icon="pi pi-sign-in" iconPos="right" class="mb-3"></p-button>
+
+        <p-divider align="center">
+          <span class="text-color-secondary text-sm">O continúa con</span>
+        </p-divider>
+
+        <!-- SOCIAL -->
+        <div class="flex gap-3">
+          <p-button icon="pi pi-google" label="Google" severity="secondary" [outlined]="true" class="flex-1"></p-button>
+          <p-button icon="pi pi-github" label="GitHub" severity="secondary" [outlined]="true" class="flex-1"></p-button>
+        </div>
+      </p-fluid>
+
+      <ng-template pTemplate="footer">
+        <div class="text-center">
+          <span class="text-color-secondary">¿No tienes cuenta? </span>
+          <a [routerLink]="['/register']" class="text-primary no-underline font-semibold">Regístrate aquí</a>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

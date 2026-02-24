@@ -1,0 +1,100 @@
+<div class="flex align-items-center justify-content-center" style="min-height: 100vh;">
+  <div style="width: 100%; max-width: 440px;">
+
+    <!-- LOGO -->
+    <div class="flex justify-content-center mb-4" [routerLink]="['/']" style="cursor: pointer;">
+      <i class="pi pi-prime text-primary" style="font-size: 2.5rem;"></i>
+      <span class="font-bold text-2xl ml-2">MiApp</span>
+    </div>
+
+    <!-- CARD REGISTER -->
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="text-center px-4 pt-4">
+          <h2 class="text-3xl font-bold m-0 mb-2">Crear una cuenta</h2>
+          <p class="text-color-secondary m-0">Completa el formulario para registrarte</p>
+        </div>
+      </ng-template>
+
+      <p-fluid>
+        <!-- ERROR -->
+        <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage" class="mb-4"></p-message>
+
+        <!-- SUCCESS -->
+        <p-message *ngIf="successMessage" severity="success" [text]="successMessage" class="mb-4"></p-message>
+
+        <!-- FULL NAME -->
+        <div class="flex flex-column gap-2 mb-4">
+          <label for="fullName" class="font-semibold text-sm">
+            <i class="pi pi-user mr-2"></i>Nombre completo
+          </label>
+          <p-iconfield>
+            <p-inputicon styleClass="pi pi-user"></p-inputicon>
+            <input pInputText id="fullName" type="text" [(ngModel)]="fullName" placeholder="Juan Pérez" />
+          </p-iconfield>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="flex flex-column gap-2 mb-4">
+          <label for="regEmail" class="font-semibold text-sm">
+            <i class="pi pi-envelope mr-2"></i>Correo electrónico
+          </label>
+          <p-iconfield>
+            <p-inputicon styleClass="pi pi-envelope"></p-inputicon>
+            <input pInputText id="regEmail" type="email" [(ngModel)]="email" placeholder="tu@email.com" />
+          </p-iconfield>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="flex flex-column gap-2 mb-4">
+          <label for="regPassword" class="font-semibold text-sm">
+            <i class="pi pi-lock mr-2"></i>Contraseña
+          </label>
+          <p-password id="regPassword" [(ngModel)]="password" placeholder="Mínimo 6 caracteres" [toggleMask]="true"
+            promptLabel="Ingresa una contraseña" weakLabel="Débil" mediumLabel="Media" strongLabel="Fuerte">
+          </p-password>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="flex flex-column gap-2 mb-4">
+          <label for="confirmPassword" class="font-semibold text-sm">
+            <i class="pi pi-lock mr-2"></i>Confirmar contraseña
+          </label>
+          <p-password id="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Repite tu contraseña" [toggleMask]="true" [feedback]="false">
+          </p-password>
+        </div>
+
+        <!-- TERMS -->
+        <div class="flex align-items-start gap-2 mb-4">
+          <p-checkbox [(ngModel)]="acceptTerms" [binary]="true" inputId="terms"></p-checkbox>
+          <label for="terms" class="text-color-secondary text-sm line-height-3">
+            Acepto los
+            <a href="#" class="text-primary no-underline font-semibold">Términos y Condiciones</a>
+            y la
+            <a href="#" class="text-primary no-underline font-semibold">Política de Privacidad</a>
+          </label>
+        </div>
+
+        <!-- REGISTER BUTTON -->
+        <p-button label="Crear cuenta" (onClick)="onRegister()" [loading]="loading" icon="pi pi-user-plus" iconPos="right" class="mb-3"></p-button>
+
+        <p-divider align="center">
+          <span class="text-color-secondary text-sm">O regístrate con</span>
+        </p-divider>
+
+        <!-- SOCIAL -->
+        <div class="flex gap-3">
+          <p-button icon="pi pi-google" label="Google" severity="secondary" [outlined]="true" class="flex-1"></p-button>
+          <p-button icon="pi pi-github" label="GitHub" severity="secondary" [outlined]="true" class="flex-1"></p-button>
+        </div>
+      </p-fluid>
+
+      <ng-template pTemplate="footer">
+        <div class="text-center">
+          <span class="text-color-secondary">¿Ya tienes cuenta? </span>
+          <a [routerLink]="['/login']" class="text-primary no-underline font-semibold">Inicia sesión</a>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
