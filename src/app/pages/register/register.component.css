@@ -1,0 +1,16 @@
+.auth-card-wrapper.register {
+    max-width: 520px;
+}
+
+.password-reqs-box {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    color: #f8fafc;
+}
+
+.password-reqs-box p {
+    margin: 0 0 0.5rem 0;
+}

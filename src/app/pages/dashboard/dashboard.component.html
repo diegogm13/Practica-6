@@ -1,0 +1,81 @@
+<!-- NAVBAR -->
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+        <i class="pi pi-prime" style="font-size:1.8rem; color:var(--p-primary-color, #6366f1);"></i>
+        <span class="font-bold text-xl ml-2">MiApp</span>
+    </div>
+    <div class="p-toolbar-group-end flex align-items-center gap-3">
+        <div class="flex align-items-center gap-2">
+            <p-avatar icon="pi pi-user" shape="circle"
+                [style]="{ 'background-color': '#6366f1', color: '#ffffff' }"></p-avatar>
+            <span class="font-semibold text-sm">{{ currentUser }}</span>
+        </div>
+        <p-button label="Cerrar sesión" icon="pi pi-sign-out" severity="danger" [outlined]="true" size="small"
+            (onClick)="logout()"></p-button>
+    </div>
+</p-toolbar>
+
+<!-- DASHBOARD CONTENT -->
+<div class="dashboard-content">
+    <div class="dashboard-inner">
+
+        <!-- WELCOME -->
+        <div class="dashboard-welcome">
+            <h1>
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                ¡Bienvenido al Dashboard!
+            </h1>
+            <p>Has iniciado sesión exitosamente como <strong class="text-primary">{{ currentUser }}</strong></p>
+        </div>
+
+        <!-- STATS CARDS -->
+        <div class="grid mb-5">
+            <div class="col-12 md:col-4 p-3">
+                <p-card>
+                    <div class="flex align-items-center gap-3">
+                        <div class="stat-icon-box blue">
+                            <i class="pi pi-chart-bar text-blue-500" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <p class="stat-label">Proyectos</p>
+                            <p class="stat-value">12</p>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+            <div class="col-12 md:col-4 p-3">
+                <p-card>
+                    <div class="flex align-items-center gap-3">
+                        <div class="stat-icon-box green">
+                            <i class="pi pi-check-circle text-green-500" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <p class="stat-label">Completados</p>
+                            <p class="stat-value">8</p>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+            <div class="col-12 md:col-4 p-3">
+                <p-card>
+                    <div class="flex align-items-center gap-3">
+                        <div class="stat-icon-box orange">
+                            <i class="pi pi-clock text-orange-500" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <p class="stat-label">Pendientes</p>
+                            <p class="stat-value">4</p>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="flex justify-content-center gap-3">
+            <p-button label="Ir al inicio" icon="pi pi-home" severity="secondary" [outlined]="true"
+                (onClick)="goToHome()"></p-button>
+            <p-button label="Cerrar sesión" icon="pi pi-sign-out" severity="danger" (onClick)="logout()"></p-button>
+        </div>
+    </div>
+</div>

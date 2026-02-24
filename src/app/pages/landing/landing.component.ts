@@ -22,6 +22,7 @@ import { RippleModule } from 'primeng/ripple';
     RippleModule,
   ],
   templateUrl: './landing.component.html',
+  styleUrl: './landing.component.css'
 })
 export class LandingComponent {
   features = [

@@ -1,18 +1,18 @@
-<div class="flex align-items-center justify-content-center" style="min-height: 100vh;">
-  <div style="width: 100%; max-width: 420px;">
+<div class="auth-container">
+  <div class="auth-card-wrapper">
 
     <!-- LOGO -->
-    <div class="flex justify-content-center mb-4" [routerLink]="['/']" style="cursor: pointer;">
-      <i class="pi pi-prime text-primary" style="font-size: 2.5rem;"></i>
-      <span class="font-bold text-2xl ml-2">MiApp</span>
+    <div class="auth-logo" (click)="goToHome()">
+      <i class="pi pi-prime text-primary"></i>
+      <span>MiApp</span>
     </div>
 
     <!-- CARD LOGIN -->
     <p-card>
       <ng-template pTemplate="header">
-        <div class="text-center px-4 pt-4">
-          <h2 class="text-3xl font-bold m-0 mb-2">Bienvenido de vuelta</h2>
-          <p class="text-color-secondary m-0">Ingresa tus credenciales para continuar</p>
+        <div class="auth-header">
+          <h2>Bienvenido de vuelta</h2>
+          <p>Ingresa tus credenciales para continuar</p>
         </div>
       </ng-template>
 
@@ -20,10 +20,36 @@
         <!-- ERROR -->
         <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage" class="mb-4"></p-message>
 
+        <!-- SUCCESS -->
+        <p-message *ngIf="successMessage" severity="success" [text]="successMessage" class="mb-4"></p-message>
+
+        <!-- CREDENCIALES DE PRUEBA -->
+        <div class="mb-4">
+          <p-button label="Ver credenciales de prueba" icon="pi pi-info-circle" severity="info" [outlined]="true"
+            size="small" (onClick)="toggleCredentials()" [style]="{ width: '100%' }">
+          </p-button>
+          <div *ngIf="showCredentials" class="credentials-box">
+            <p class="text-sm font-semibold" style="margin: 0 0 0.5rem;">
+              <i class="pi pi-key mr-1"></i>Credenciales hardcodeadas:
+            </p>
+            <div *ngFor="let cred of hardcodedCredentials" class="credentials-item"
+              (click)="fillCredentials(cred.email, cred.password)">
+              <div>
+                <div class="text-sm"><strong>Email:</strong> {{ cred.email }}</div>
+                <div class="text-sm"><strong>Pass:</strong> {{ cred.password }}</div>
+              </div>
+              <i class="pi pi-copy text-primary" title="Usar estas credenciales"></i>
+            </div>
+            <p class="text-xs" style="color: #6b7280; margin: 0.5rem 0 0;">
+              <i class="pi pi-info-circle mr-1"></i>Haz clic en una para autocompletar
+            </p>
+          </div>
+        </div>
+
         <!-- EMAIL -->
-        <div class="flex flex-column gap-2 mb-4">
-          <label for="email" class="font-semibold text-sm">
-            <i class="pi pi-envelope mr-2"></i>Correo electrónico
+        <div class="field-group">
+          <label for="email">
+            <i class="pi pi-envelope mr-1"></i>Correo electrónico
           </label>
           <p-iconfield>
             <p-inputicon styleClass="pi pi-envelope"></p-inputicon>
@@ -32,24 +58,25 @@
         </div>
 
         <!-- PASSWORD -->
-        <div class="flex flex-column gap-2 mb-4">
-          <label for="password" class="font-semibold text-sm">
-            <i class="pi pi-lock mr-2"></i>Contraseña
+        <div class="field-group">
+          <label for="password">
+            <i class="pi pi-lock mr-1"></i>Contraseña
           </label>
-          <p-password id="password" [(ngModel)]="password" placeholder="Tu contraseña" [toggleMask]="true" [feedback]="false"></p-password>
+          <p-password id="password" [(ngModel)]="password" placeholder="Tu contraseña" [toggleMask]="true"
+            [feedback]="false"></p-password>
         </div>
 
         <!-- REMEMBER ME -->
         <div class="flex align-items-center justify-content-between mb-4">
           <p-checkbox [(ngModel)]="rememberMe" [binary]="true" label="Recordarme" inputId="remember"></p-checkbox>
-          <a [routerLink]="['/login']" class="text-primary no-underline text-sm font-semibold">¿Olvidaste tu contraseña?</a>
         </div>
 
         <!-- LOGIN BUTTON -->
-        <p-button label="Iniciar Sesión" (onClick)="onLogin()" [loading]="loading" icon="pi pi-sign-in" iconPos="right" class="mb-3"></p-button>
+        <p-button label="Iniciar Sesión" (onClick)="onLogin()" [loading]="loading" icon="pi pi-sign-in" iconPos="right"
+          class="mb-3"></p-button>
 
         <p-divider align="center">
-          <span class="text-color-secondary text-sm">O continúa con</span>
+          <span class="text-sm" style="color: #6b7280;">O continúa con</span>
         </p-divider>
 
         <!-- SOCIAL -->
@@ -60,9 +87,10 @@
       </p-fluid>
 
       <ng-template pTemplate="footer">
-        <div class="text-center">
-          <span class="text-color-secondary">¿No tienes cuenta? </span>
-          <a [routerLink]="['/register']" class="text-primary no-underline font-semibold">Regístrate aquí</a>
+        <div class="auth-footer">
+          <span style="color: #6b7280;">¿No tienes cuenta? </span>
+          <a (click)="goToRegister()" class="text-primary no-underline font-semibold"
+            style="cursor: pointer;">Regístrate aquí</a>
         </div>
       </ng-template>
     </p-card>

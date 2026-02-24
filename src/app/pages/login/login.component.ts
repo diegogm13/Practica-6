@@ -12,6 +12,7 @@ import { MessageModule } from 'primeng/message';
 import { FluidModule } from 'primeng/fluid';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,7 @@ import { InputIconModule } from 'primeng/inputicon';
     InputIconModule,
   ],
   templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
 export class LoginComponent {
   email: string = '';
@@ -39,11 +41,32 @@ export class LoginComponent {
   rememberMe: boolean = false;
   loading: boolean = false;
   errorMessage: string = '';
+  successMessage: string = '';
 
-  constructor(private router: Router) {}
+  // Para mostrar las credenciales de prueba
+  showCredentials: boolean = false;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
+
+  get hardcodedCredentials() {
+    return this.authService.getHardcodedCredentials();
+  }
+
+  toggleCredentials(): void {
+    this.showCredentials = !this.showCredentials;
+  }
+
+  fillCredentials(email: string, password: string): void {
+    this.email = email;
+    this.password = password;
+  }
 
   onLogin(): void {
     this.errorMessage = '';
+    this.successMessage = '';
 
     if (!this.email || !this.password) {
       this.errorMessage = 'Por favor completa todos los campos.';
@@ -52,14 +75,27 @@ export class LoginComponent {
 
     this.loading = true;
 
+    // Simular un pequeño delay de "carga"
     setTimeout(() => {
+      const result = this.authService.login(this.email, this.password);
       this.loading = false;
-      console.log('Login:', {
-        email: this.email,
-        password: this.password,
-        rememberMe: this.rememberMe,
-      });
-      // this.router.navigate(['/dashboard']);
-    }, 1500);
+
+      if (result.success) {
+        this.successMessage = result.message + ' Redirigiendo...';
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 1500);
+      } else {
+        this.errorMessage = result.message;
+      }
+    }, 1000);
+  }
+
+  goToRegister(): void {
+    this.router.navigate(['/register']);
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/']);
   }
 }
