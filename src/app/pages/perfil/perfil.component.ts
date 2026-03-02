@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
-import { TagModule } from 'primeng/tag';
+import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-    selector: 'app-dashboard',
+    selector: 'app-perfil',
     standalone: true,
-    imports: [CommonModule, RouterModule, ButtonModule, CardModule, AvatarModule, TagModule],
-    templateUrl: './dashboard.component.html',
-    styleUrl: './dashboard.component.css',
+    imports: [CommonModule, ButtonModule, CardModule, AvatarModule, InputTextModule],
+    templateUrl: './perfil.component.html',
+    styleUrl: './perfil.component.css',
 })
-export class DashboardComponent implements OnInit {
+export class PerfilComponent implements OnInit {
     isLoggedIn = false;
     currentUser = '';
 

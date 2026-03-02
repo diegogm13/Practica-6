@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install chart.js --save)",
+      "Bash(npx ng build --configuration development)"
+    ]
+  }
+}

@@ -88,9 +88,8 @@
 
       <ng-template pTemplate="footer">
         <div class="auth-footer">
-          <span style="color: #6b7280;">¿No tienes cuenta? </span>
-          <a (click)="goToRegister()" class="text-primary no-underline font-semibold"
-            style="cursor: pointer;">Regístrate aquí</a>
+          <span class="text-color-secondary">¿No tienes cuenta?</span>
+          <p-button label="Regístrate aquí" [text]="true" (onClick)="goToRegister()" class="auth-link-btn"></p-button>
         </div>
       </ng-template>
     </p-card>

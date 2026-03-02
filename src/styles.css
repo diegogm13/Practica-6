@@ -11,8 +11,8 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #1e293b;
 }
 
 /* === FLEXBOX === */
@@ -349,7 +349,7 @@ body {
 .field-group label {
   font-weight: 600;
   font-size: 0.875rem;
-  color: #ffffff;
+  color: #374151;
 }
 
 .field-group label .required {

@@ -1,0 +1,123 @@
+.page-container {
+    max-width: 600px;
+}
+
+.page-header {
+    margin-bottom: 1.5rem;
+}
+
+.page-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    color: #1e293b;
+}
+
+.page-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.card-wrapper {
+    max-width: 480px;
+}
+
+:host ::ng-deep .grupos-card {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+:host ::ng-deep .grupos-card .p-card-body {
+    padding: 1.25rem;
+}
+
+/* Card header bar */
+.card-header-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+.card-header-icon {
+    font-size: 1.2rem;
+    color: var(--p-primary-color, #3b82f6);
+}
+
+.card-header-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1e293b;
+}
+
+/* Stat block */
+.stat-block {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.stat-number {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--p-primary-color, #3b82f6);
+    line-height: 1;
+}
+
+/* Progress bar */
+.progress-block {
+    margin-bottom: 1.25rem;
+}
+
+.progress-label-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+}
+
+:host ::ng-deep .group-progress .p-progressbar-value {
+    background: var(--p-primary-color, #3b82f6);
+}
+
+:host ::ng-deep .group-progress {
+    height: 10px;
+    border-radius: 5px;
+}
+
+/* Chart */
+.chart-block {
+    margin-top: 0.5rem;
+}
+
+.chart-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    gap: 0.75rem;
+    border: 2px dashed #e2e8f0;
+}
+
+.chart-placeholder-icon {
+    font-size: 2.5rem;
+    color: #cbd5e1;
+}
+
+.chart-placeholder-text {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}

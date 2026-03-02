@@ -115,18 +115,21 @@ export class RegisterComponent {
       this.fieldErrors['fullName'] = 'El nombre debe tener al menos 3 caracteres.';
       isValid = false;
     }
-
     // TELÉFONO - solo números
     if (!this.phone || this.phone.trim() === '') {
       this.fieldErrors['phone'] = 'El número de teléfono es obligatorio.';
       isValid = false;
     } else {
       const phoneClean = this.phone.replace(/[\s\-\(\)]/g, '');
+      
       if (!/^\d+$/.test(phoneClean)) {
         this.fieldErrors['phone'] = 'El teléfono solo debe contener números.';
         isValid = false;
       } else if (phoneClean.length < 10) {
         this.fieldErrors['phone'] = 'El teléfono debe tener al menos 10 dígitos.';
+        isValid = false;
+      } else if (phoneClean.length > 15) {
+        this.fieldErrors['phone'] = 'El teléfono no puede tener más de 15 dígitos.';
         isValid = false;
       }
     }

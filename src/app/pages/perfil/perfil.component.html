@@ -1,0 +1,88 @@
+<div class="page-container">
+
+    <div class="page-header">
+        <h2>Perfil de Usuario</h2>
+        <p>Información y datos de tu cuenta.</p>
+    </div>
+
+    <div class="card-wrapper">
+        <p-card class="perfil-card">
+            <ng-template pTemplate="header">
+                <div class="card-header-bar">
+                    <i class="pi pi-user card-header-icon"></i>
+                    <span class="card-header-title">Datos del Usuario</span>
+                </div>
+            </ng-template>
+
+            <!-- Avatar + name/role -->
+            <div class="user-avatar-block">
+                <p-avatar
+                    [label]="isLoggedIn ? 'JD' : '?'"
+                    size="xlarge"
+                    shape="circle"
+                    class="user-avatar"
+                ></p-avatar>
+                @if (isLoggedIn) {
+                <div class="user-meta">
+                    <span class="user-name-label">Juan Developer</span>
+                    <span class="user-role-badge">Senior Developer</span>
+                </div>
+                }
+            </div>
+
+            <!-- Info fields -->
+            <div class="user-fields">
+                <div class="field-group">
+                    <label class="field-label">Nombre Completo</label>
+                    <input
+                        type="text"
+                        pInputText
+                        [disabled]="true"
+                        [value]="isLoggedIn ? 'Juan Developer' : '—'"
+                        class="w-full"
+                    />
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Rol</label>
+                    <input
+                        type="text"
+                        pInputText
+                        [disabled]="true"
+                        [value]="isLoggedIn ? 'Senior Developer' : '—'"
+                        class="w-full"
+                    />
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Correo Electrónico</label>
+                    <input
+                        type="text"
+                        pInputText
+                        [disabled]="true"
+                        [value]="isLoggedIn ? currentUser : '—'"
+                        class="w-full"
+                    />
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Última Conexión</label>
+                    <input
+                        type="text"
+                        pInputText
+                        [disabled]="true"
+                        [value]="isLoggedIn ? '27/02/2026 10:30' : '—'"
+                        class="w-full"
+                    />
+                </div>
+            </div>
+
+            <!-- Edit action -->
+            <div class="user-actions">
+                <p-button
+                    label="Editar Perfil"
+                    icon="pi pi-user-edit"
+                    size="small"
+                    [disabled]="!isLoggedIn"
+                ></p-button>
+            </div>
+        </p-card>
+    </div>
+</div>

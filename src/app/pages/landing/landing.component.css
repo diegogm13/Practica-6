@@ -10,12 +10,12 @@
     font-size: 3.75rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #f8fafc;
+    color: #1e293b;
 }
 
 .landing-hero .hero-desc {
     font-size: 1.25rem;
-    color: #94a3b8;
+    color: #64748b;
     line-height: 1.75;
     max-width: 550px;
     margin-bottom: 2rem;
@@ -32,11 +32,11 @@
     font-size: 2.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: #f8fafc;
+    color: #1e293b;
 }
 
 .landing-features .features-desc {
-    color: #94a3b8;
+    color: #64748b;
     font-size: 1.125rem;
     margin-bottom: 2rem;
 }
@@ -56,6 +56,6 @@
 }
 
 .landing-footer span {
-    color: #64748b;
+    color: #94a3b8;
     font-size: 0.875rem;
 }

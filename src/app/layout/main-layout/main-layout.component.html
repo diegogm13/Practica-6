@@ -1,0 +1,66 @@
+<div class="app-wrapper" [class.with-sidebar]="isLoggedIn">
+
+    <!-- ─── SIDEBAR (only when logged in) ─────────────────────────── -->
+    @if (isLoggedIn) {
+    <aside class="app-sidebar">
+        <!-- Header -->
+        <div class="sidebar-header">
+            <i class="pi pi-prime sidebar-logo"></i>
+            <span class="sidebar-brand">ERP-DGM</span>
+        </div>
+
+        <!-- Navigation menu -->
+        <div class="sidebar-menu">
+            <p-menu [model]="menuItems" class="sidebar-nav-menu"></p-menu>
+        </div>
+
+        <!-- Footer: logout + version -->
+        <div class="sidebar-footer">
+            <p-button
+                label="Cerrar Sesión"
+                icon="pi pi-power-off"
+                severity="danger"
+                [text]="true"
+                class="w-full logout-btn"
+                (onClick)="logout()"
+            ></p-button>
+            <span class="version-text">Versión App: v1.0.0</span>
+        </div>
+    </aside>
+    }
+
+    <!-- ─── MAIN AREA ──────────────────────────────────────────────── -->
+    <div class="app-main">
+
+        <!-- Topbar -->
+        <header class="app-topbar">
+            <div class="topbar-left">
+                @if (isLoggedIn) {
+                <p-breadcrumb
+                    [model]="breadcrumbItems"
+                    [home]="homeItem"
+                    class="topbar-breadcrumb"
+                ></p-breadcrumb>
+                } @else {
+                <div class="topbar-brand">
+                    <i class="pi pi-prime" style="font-size:1.5rem; color:var(--p-primary-color, #3B82F6);"></i>
+                    <span class="font-bold text-xl ml-2">ERP-DGM</span>
+                </div>
+                }
+            </div>
+
+            <div class="topbar-right">
+                @if (!isLoggedIn) {
+                <p-button label="Login" [text]="true" (onClick)="navigateLogin()"></p-button>
+                <p-button label="Registrar" (onClick)="navigateRegister()"></p-button>
+                }
+            </div>
+        </header>
+
+        <!-- Page content (router-outlet) -->
+        <main class="page-content">
+            <router-outlet></router-outlet>
+        </main>
+
+    </div>
+</div>

@@ -74,7 +74,7 @@
           <p-iconfield>
             <p-inputicon styleClass="pi pi-phone"></p-inputicon>
             <input pInputText id="phone" type="text" [(ngModel)]="phone" (input)="onPhoneInput($event)"
-              placeholder="1234567890" maxlength="15" />
+              placeholder="1234567890" maxlength="10" />
           </p-iconfield>
           <small *ngIf="fieldErrors['phone']" class="field-error">
             <i class="pi pi-exclamation-circle"></i>{{ fieldErrors['phone'] }}
@@ -168,12 +168,12 @@
         <!-- TERMS -->
         <div class="flex align-items-start gap-2 mb-4">
           <p-checkbox [(ngModel)]="acceptTerms" [binary]="true" inputId="terms"></p-checkbox>
-          <label for="terms" class="text-sm line-height-3" style="color: #6b7280;">
-            Acepto los
-            <a href="#" class="text-primary no-underline font-semibold">Términos y Condiciones</a>
-            y la
-            <a href="#" class="text-primary no-underline font-semibold">Política de Privacidad</a>
-          </label>
+          <div class="terms-row text-sm line-height-3">
+            <span class="text-color-secondary">Acepto los</span>
+            <p-button label="Términos y Condiciones" [text]="true" class="auth-link-btn"></p-button>
+            <span class="text-color-secondary">y la</span>
+            <p-button label="Política de Privacidad" [text]="true" class="auth-link-btn"></p-button>
+          </div>
         </div>
         <small *ngIf="fieldErrors['terms']" class="field-error mb-3" style="display: block;">
           <i class="pi pi-exclamation-circle"></i>{{ fieldErrors['terms'] }}
@@ -197,9 +197,8 @@
 
       <ng-template pTemplate="footer">
         <div class="auth-footer">
-          <span style="color: #6b7280;">¿Ya tienes cuenta? </span>
-          <a (click)="goToLogin()" class="text-primary no-underline font-semibold" style="cursor: pointer;">Inicia
-            sesión</a>
+          <span class="text-color-secondary">¿Ya tienes cuenta?</span>
+          <p-button label="Inicia sesión" [text]="true" (onClick)="goToLogin()" class="auth-link-btn"></p-button>
         </div>
       </ng-template>
     </p-card>

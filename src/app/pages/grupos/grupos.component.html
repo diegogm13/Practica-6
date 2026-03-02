@@ -1,0 +1,54 @@
+<div class="page-container">
+
+    <div class="page-header">
+        <h2>Grupos</h2>
+        <p>Resumen y avance de los grupos registrados.</p>
+    </div>
+
+    <div class="card-wrapper">
+        <p-card class="grupos-card">
+            <ng-template pTemplate="header">
+                <div class="card-header-bar">
+                    <i class="pi pi-users card-header-icon"></i>
+                    <span class="card-header-title">Detalles del Grupo</span>
+                </div>
+            </ng-template>
+
+            <!-- Total N -->
+            <div class="stat-block">
+                <span class="stat-label">Total N:</span>
+                <span class="stat-number">{{ groupTotal }}</span>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="progress-block">
+                <div class="progress-label-row">
+                    <span class="stat-label">Avance:</span>
+                    <span class="stat-label font-semibold">{{ groupProgress }}%</span>
+                </div>
+                <p-progressbar
+                    [value]="groupProgress"
+                    [showValue]="false"
+                    class="group-progress"
+                ></p-progressbar>
+            </div>
+
+            <!-- Pie chart / placeholder -->
+            <div class="chart-block">
+                @if (isLoggedIn) {
+                <p-chart
+                    type="pie"
+                    [data]="chartData"
+                    [options]="chartOptions"
+                    height="220"
+                ></p-chart>
+                } @else {
+                <div class="chart-placeholder">
+                    <i class="pi pi-chart-pie chart-placeholder-icon"></i>
+                    <span class="chart-placeholder-text">Inicia sesión para ver el gráfico</span>
+                </div>
+                }
+            </div>
+        </p-card>
+    </div>
+</div>
