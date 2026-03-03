@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <div class="page-container">
 
     <div class="page-header">
@@ -24,34 +26,60 @@
                 ></p-avatar>
                 @if (isLoggedIn) {
                 <div class="user-meta">
-                    <span class="user-name-label">Juan Developer</span>
-                    <span class="user-role-badge">Senior Developer</span>
+                    <span class="user-name-label">{{ profileName }}</span>
+                    <span class="user-role-badge">{{ profileRole }}</span>
                 </div>
                 }
             </div>
 
             <!-- Info fields -->
             <div class="user-fields">
+
+                <!-- Nombre Completo -->
                 <div class="field-group">
                     <label class="field-label">Nombre Completo</label>
-                    <input
-                        type="text"
-                        pInputText
-                        [disabled]="true"
-                        [value]="isLoggedIn ? 'Juan Developer' : '—'"
-                        class="w-full"
-                    />
+                    @if (editMode) {
+                        <input
+                            type="text"
+                            pInputText
+                            [(ngModel)]="editName"
+                            placeholder="Nombre completo"
+                            class="w-full"
+                        />
+                    } @else {
+                        <input
+                            type="text"
+                            pInputText
+                            [disabled]="true"
+                            [value]="isLoggedIn ? profileName : '—'"
+                            class="w-full"
+                        />
+                    }
                 </div>
+
+                <!-- Rol -->
                 <div class="field-group">
                     <label class="field-label">Rol</label>
-                    <input
-                        type="text"
-                        pInputText
-                        [disabled]="true"
-                        [value]="isLoggedIn ? 'Senior Developer' : '—'"
-                        class="w-full"
-                    />
+                    @if (editMode) {
+                        <input
+                            type="text"
+                            pInputText
+                            [(ngModel)]="editRole"
+                            placeholder="Rol o cargo"
+                            class="w-full"
+                        />
+                    } @else {
+                        <input
+                            type="text"
+                            pInputText
+                            [disabled]="true"
+                            [value]="isLoggedIn ? profileRole : '—'"
+                            class="w-full"
+                        />
+                    }
                 </div>
+
+                <!-- Correo (siempre solo lectura) -->
                 <div class="field-group">
                     <label class="field-label">Correo Electrónico</label>
                     <input
@@ -62,6 +90,8 @@
                         class="w-full"
                     />
                 </div>
+
+                <!-- Última Conexión (siempre solo lectura) -->
                 <div class="field-group">
                     <label class="field-label">Última Conexión</label>
                     <input
@@ -74,14 +104,32 @@
                 </div>
             </div>
 
-            <!-- Edit action -->
+            <!-- Acciones -->
             <div class="user-actions">
-                <p-button
-                    label="Editar Perfil"
-                    icon="pi pi-user-edit"
-                    size="small"
-                    [disabled]="!isLoggedIn"
-                ></p-button>
+                @if (editMode) {
+                    <p-button
+                        label="Guardar"
+                        icon="pi pi-check"
+                        size="small"
+                        (onClick)="saveProfile()"
+                    ></p-button>
+                    <p-button
+                        label="Cancelar"
+                        icon="pi pi-times"
+                        size="small"
+                        severity="secondary"
+                        [text]="true"
+                        (onClick)="cancelEdit()"
+                    ></p-button>
+                } @else {
+                    <p-button
+                        label="Editar Perfil"
+                        icon="pi pi-user-edit"
+                        size="small"
+                        [disabled]="!isLoggedIn"
+                        (onClick)="startEdit()"
+                    ></p-button>
+                }
             </div>
         </p-card>
     </div>

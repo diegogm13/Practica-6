@@ -67,6 +67,12 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
                 styleClass: url.includes('/dashboard/grupos') ? 'menu-active-item' : '',
             },
             {
+                label: 'Usuarios',
+                icon: 'pi pi-user-edit',
+                routerLink: '/dashboard/usuarios',
+                styleClass: url.includes('/dashboard/usuarios') ? 'menu-active-item' : '',
+            },
+            {
                 label: 'Perfil',
                 icon: 'pi pi-user',
                 routerLink: '/dashboard/perfil',
@@ -83,6 +89,8 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
     updateBreadcrumb(url: string): void {
         if (url.includes('/dashboard/grupos')) {
             this.breadcrumbItems = [{ label: 'Grupos' }];
+        } else if (url.includes('/dashboard/usuarios')) {
+            this.breadcrumbItems = [{ label: 'Usuarios' }];
         } else if (url.includes('/dashboard/perfil')) {
             this.breadcrumbItems = [{ label: 'Perfil' }];
         } else if (url.includes('/dashboard/reportes')) {

@@ -8,13 +8,14 @@ import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
-import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 import { FluidModule } from 'primeng/fluid';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TextareaModule } from 'primeng/textarea';
+import { MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
 
 interface FieldError {
@@ -24,6 +25,7 @@ interface FieldError {
 @Component({
   selector: 'app-register',
   standalone: true,
+  providers: [MessageService],
   imports: [
     CommonModule,
     FormsModule,
@@ -34,7 +36,7 @@ interface FieldError {
     CheckboxModule,
     CardModule,
     DividerModule,
-    MessageModule,
+    ToastModule,
     FluidModule,
     IconFieldModule,
     InputIconModule,
@@ -56,8 +58,6 @@ export class RegisterComponent {
   birthDate: Date | null = null;
   acceptTerms: boolean = false;
   loading: boolean = false;
-  errorMessage: string = '';
-  successMessage: string = '';
   fieldErrors: FieldError = {};
 
   // Para mostrar los requisitos de contraseña
@@ -71,7 +71,8 @@ export class RegisterComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) {
     // Calcular la fecha máxima (hoy menos 18 años)
     this.maxDate = new Date();
@@ -235,11 +236,12 @@ export class RegisterComponent {
   }
 
   onRegister(): void {
-    this.errorMessage = '';
-    this.successMessage = '';
-
     if (!this.validateForm()) {
-      this.errorMessage = 'Por favor corrige los errores en el formulario.';
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Formulario inválido',
+        detail: 'Por favor corrige los errores en el formulario.',
+      });
       return;
     }
 
@@ -259,12 +261,20 @@ export class RegisterComponent {
       this.loading = false;
 
       if (result.success) {
-        this.successMessage = result.message + ' Redirigiendo al login...';
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Cuenta creada',
+          detail: result.message + ' Redirigiendo al login...',
+        });
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 2000);
       } else {
-        this.errorMessage = result.message;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error al registrar',
+          detail: result.message,
+        });
       }
     }, 1500);
   }

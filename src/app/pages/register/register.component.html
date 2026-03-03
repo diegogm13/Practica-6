@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="auth-container">
   <div class="auth-card-wrapper register">
 
@@ -17,12 +18,6 @@
       </ng-template>
 
       <p-fluid>
-        <!-- ERROR GENERAL -->
-        <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage" class="mb-4"></p-message>
-
-        <!-- SUCCESS -->
-        <p-message *ngIf="successMessage" severity="success" [text]="successMessage" class="mb-4"></p-message>
-
         <!-- USUARIO -->
         <div class="field-group">
           <label for="usuario">

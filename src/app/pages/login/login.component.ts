@@ -8,15 +8,17 @@ import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
-import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 import { FluidModule } from 'primeng/fluid';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
+  providers: [MessageService],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,7 +29,7 @@ import { AuthService } from '../../services/auth.service';
     CheckboxModule,
     CardModule,
     DividerModule,
-    MessageModule,
+    ToastModule,
     FluidModule,
     IconFieldModule,
     InputIconModule,
@@ -40,15 +42,14 @@ export class LoginComponent {
   password: string = '';
   rememberMe: boolean = false;
   loading: boolean = false;
-  errorMessage: string = '';
-  successMessage: string = '';
 
   // Para mostrar las credenciales de prueba
   showCredentials: boolean = false;
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) { }
 
   get hardcodedCredentials() {
@@ -65,28 +66,36 @@ export class LoginComponent {
   }
 
   onLogin(): void {
-    this.errorMessage = '';
-    this.successMessage = '';
-
     if (!this.email || !this.password) {
-      this.errorMessage = 'Por favor completa todos los campos.';
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Campos vacíos',
+        detail: 'Por favor completa todos los campos.',
+      });
       return;
     }
 
     this.loading = true;
 
-    // Simular un pequeño delay de "carga"
     setTimeout(() => {
       const result = this.authService.login(this.email, this.password);
       this.loading = false;
 
       if (result.success) {
-        this.successMessage = result.message + ' Redirigiendo...';
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sesión iniciada',
+          detail: result.message + ' Redirigiendo...',
+        });
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
         }, 1500);
       } else {
-        this.errorMessage = result.message;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error de acceso',
+          detail: result.message,
+        });
       }
     }, 1000);
   }
